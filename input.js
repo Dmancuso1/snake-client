@@ -1,20 +1,24 @@
 
+// stores the active TCP connection object;
+let connection;
+
+
 const handleUserInput = (key) => {
-  if (key === '\u0003') { // key is the CB func. that waits for the condition.
+  if (key === '\u0003') { 
     process.exit();
   }// \u0003 maps to ctrl+c input
 
   if (key === '\x77') { // 'w'
-    console.log("up");
+  connection.write("Move: up");
   }
   if (key === '\x61') { // 'a'
-    console.log("left");
+  connection.write("Move: left");
   }
   if (key === '\x73') { // 's'
-  console.log("down");
+  connection.write("Move: down");
   }
   if (key === '\x64') { // 'd'
-  console.log("right");
+  connection.write("Move: right");
   }
 
 
@@ -25,7 +29,8 @@ const handleUserInput = (key) => {
  * Specifically, so that we can handle user input via stdin
  */
 
-const setupInput = function() {
+const setupInput = function(conn) {
+  connection = conn;
   const stdin = process.stdin;
   stdin.setRawMode(true);
   stdin.setEncoding('utf8');
