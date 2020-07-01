@@ -21,6 +21,13 @@ const handleUserInput = (key) => {
   connection.write("Move: right");
   }
 
+  if (key === '\x7a') { // 'z'
+  connection.write("Say: Ima get some lunch");
+  }
+  if (key === '\x78') { // 'x'
+  connection.write("Say: howdy!");
+  }
+
 
 }
 
